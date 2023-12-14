@@ -1,34 +1,28 @@
+let li;
+
+
 // Create a "close" button and append it to each list item
 let inputField = document.querySelectorAll(".lists li");
-// console.log(inputField);
+
+
 let i; 
 for(i = 0; i < inputField.length ; i++) {
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "Close";
-    span.appendChild(txt);
-    inputField[i].appendChild(span);
+    inputField[i].appendChild(createCloseBtn());
 }
-
-// Click on a close button to crossover current list item
-
-
-
-
 
 
 //Check Box On Item Lists
 // const list = document.querySelector('ul');
 
 function listCheckboxHandler(evt) {
-    if (evt.target.tagName === 'li') {
+    if (evt.target.tagName === 'LI') {
         evt.target.classList.toggle('checked');
     }
 }
 
 // Add new item to list with "Add" button
 function addTask() {
-    let li = document.createElement("li");
+    li = document.createElement("li");
     let inputValue = document.getElementsByName("newTask")[0].value;
     let t = document.createTextNode(inputValue);
     li.appendChild(t);
@@ -36,23 +30,26 @@ function addTask() {
         alert("You must write something");
     } else {
         document.querySelector(".lists").appendChild(li);
+        li.appendChild(createCloseBtn());
     }
-    document.getElementsByName("newTask").value ="";
+
+    document.getElementsByName("newTask")[0].value ="";
 }
 
+// Close Button
+function createCloseBtn() {
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
     span.className = "Close";
     span.appendChild(txt);
-    li.appendChild(span);
-
-    for (i = 0; i < close.length; i++) {
-    span.onclick = function () {
+    
+// Evt Close Button
+    span.addEventListener('click', function () {
         var div = this.parentElement;
         div.style.display = "none";
-    
-        
-        }
+    });
+
+    return span;
     }
 
 
